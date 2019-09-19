@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.dao.Log4Dao">
+
+   <insert id="insertLog" parameterType="com.erp.model.Log4">
+      insert into log4 values(#{log_name},#{log_pass},#{log_time},#{log_IP},#{log_status})
+   </insert>
+
+
+</mapper>

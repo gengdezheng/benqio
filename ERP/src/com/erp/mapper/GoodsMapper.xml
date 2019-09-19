@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.dao.GoodsDao">
+
+	<resultMap type="com.erp.model.Goods" id="goodsList">
+		<result column="goodsId" property="goodsId" />
+		<result column="goodsName" property="goodsName" />
+		<result column="goodsPrice" property="goodsPrice" />
+		<result column="goodsAddress" property="goodsAddress" />
+	</resultMap>
+
+	<select id="goodsList" resultMap="goodsList">
+		select * from goods
+	</select>
+
+	<select id="getOrderTypeBalance" resultType="java.lang.Double">
+		select goodsPrice
+		from goods where goodsName=#{orderType}
+	</select>
+
+	<delete id="deleteGoodsById" parameterType="java.lang.Integer">
+		delete from goods where goodsId=#{goodsId}
+	</delete>
+
+	<select id="updateGoodsById" parameterType="java.lang.Integer"
+		resultMap="goodsList">
+		select * from goods where goodsId=#{goodsId}
+	</select>
+
+    <update id="commitUpdate" parameterType="com.erp.model.Goods">
+       update goods 
+       set 
+       goodsPrice=#{goodsPrice},
+       goodsAddress=#{goodsAddress}
+       where 
+       goodsId=#{goodsId}
+    </update>
+    
+    <insert id="addGoods"  parameterType="com.erp.model.Goods">
+       insert into goods(goodsName,goodsPrice,goodsAddress)
+       values(#{goodsName},#{goodsPrice},#{goodsAddress})
+    </insert>
+
+</mapper>

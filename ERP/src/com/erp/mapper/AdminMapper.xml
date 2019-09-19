@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.dao.AdminDao">
+
+	<resultMap type="com.erp.model.Admin" id="adminList">
+		<result column="id" property="id" />
+		<result column="userName" property="userName" />
+		<result column="password" property="password" />
+	</resultMap>
+
+	<select id="adminLogin" resultMap="adminList"
+		parameterType="com.erp.model.Admin">
+		select * from admin where userName=#{userName} and password=#{password}
+	</select>
+
+	<!-- 修改密码 -->
+	<update id="updatePassword" parameterType="com.erp.model.Admin">
+		update admin set password=#{password} where userName=#{userName}
+	</update>
+
+	<!-- 统计订单总数 -->
+	<select id="orderCount" resultType="java.lang.Integer">
+		select count(*) from orders
+	</select>
+
+    <select id="logCount" resultType="java.lang.Integer">
+		select count(*) from log4
+	</select>
+	
+	<!-- 统计客户总数 -->
+	<select id="clientCount" resultType="java.lang.Integer">
+		select count(*) from client
+	</select>
+
+
+	<!-- 订单列表 -->
+	<resultMap type="com.erp.model.Orders" id="orderListMap">
+		<result column="orderId" property="id" />
+		<result column="orderTime" property="orderTime" />
+		<result column="orderType" property="orderType" />
+		<result column="orderNumber" property="orderNumber" />
+		<result column="clientId" property="clientId" />
+		<result column="orderBalance" property="orderBalance" />
+	</resultMap>
+	<select id="orderList" resultMap="orderListMap">
+	   select * from orders
+	</select>
+	
+	<select id="findOrderById" parameterType="java.lang.Integer" resultMap="orderListMap">
+	   select * from orders where orderId=#{orderId}
+	</select>
+
+    <select id="findOrderByClientId" parameterType="java.lang.Integer" resultMap="orderListMap">
+	   select * from orders where clientId=#{clientId}
+	</select>
+	
+	 <select id="findOrderByOrderType" parameterType="java.lang.String" resultMap="orderListMap">
+	   select * from orders 
+	         where   orderType=#{content}
+
+	</select>
+	
+	<!-- 根据单号删除订单-->
+	<delete id="deleteByOrderId" parameterType="java.lang.Integer">
+	   DELETE FROM orders where orderId=#{orderId} 
+	</delete>
+	
+	<!-- 登录日志 -->
+	<resultMap type="com.erp.model.Log4" id="logList">    
+    <result column="logName" property="log_name"/>
+     <result column="logPass" property="log_pass"/>
+     <result column="logTime" property="log_time"/>
+     <result column="logIP" property="log_IP"/>
+     <result column="logState" property="log_status"/>
+	</resultMap>	
+	<select id="logList" resultMap="logList">
+	     select * from log4 ORDER BY logTime desc LIMIT 0,9;
+	</select>
+	
+	
+	<select id="shangyiCount" resultType="java.lang.Integer">
+	   select count(*) from orders where orderType='上衣'
+	</select>
+	
+	<select id="kuziCount" resultType="java.lang.Integer">
+	   select count(*) from orders where orderType='裤子'
+	</select>
+	
+	<select id="mianCount" resultType="java.lang.Integer">
+	   select count(*) from orders where orderType='棉布'
+	</select>
+	
+	<select id="maCount" resultType="java.lang.Integer">
+	   select count(*) from orders where orderType='麻布'
+	</select>
+    
+    <select id="ranCount" resultType="java.lang.Integer">
+	   select count(*) from orders where orderType='染料'
+	</select>
+	<!-- 饼状图 -->
+	 <select id="sumShangyi" resultType="java.lang.Integer">
+	   SELECT SUM(orderBalance) FROM orders where orderType='上衣'
+	</select>
+	<select id="sumKuzi" resultType="java.lang.Integer">
+	   SELECT SUM(orderBalance) FROM orders where orderType='裤子'
+	</select>
+	<select id="sumMianBu" resultType="java.lang.Integer">
+	   SELECT SUM(orderBalance) FROM orders where orderType='棉布'
+	</select>
+		<select id="sumMaBu" resultType="java.lang.Integer">
+	   SELECT SUM(orderBalance) FROM orders where orderType='麻布'
+	</select>
+	<select id="sumRanliao" resultType="java.lang.Integer">
+	   SELECT SUM(orderBalance) FROM orders where orderType='染料'
+	</select>
+</mapper>
