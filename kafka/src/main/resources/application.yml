@@ -1,0 +1,24 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: 192.168.111.129:9092
+      group-id: Java-Test
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: true
+      auto-commit-interval: 10000ms
+      properties:
+        session.timeout.ms: 15000
+      max-poll-records: 1000
+      auto-offset-reset: latest
+      producer:
+        bootstrap-servers: 192.168.111.129:9092
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        batch-size: 65535
+        buffer-memory: 524288
