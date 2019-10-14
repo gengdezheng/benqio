@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.benqio.quartz.dao.UserMapper">
+
+    <resultMap type="com.benqio.quartz.model.User" id="FindResult">
+        <result property="id" column="id"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+        <result property="roleId" column="roleId"/>
+    </resultMap>
+
+    <select id="userLogin" resultMap="FindResult" parameterType="string">
+        select * from s_user where 1=1
+        <if test="userName!='' and userName!=null">
+            and    userName = #{userName}
+        </if>
+
+        <if test="password!='' and password!=null">
+            and   password = #{password}
+        </if>
+    </select>
+
+    <insert id="insertByQuartz" parameterType="com.benqio.quartz.model.User">
+        insert into s_user values (id=#{id},userName=#{userName},password=#{password},roleId=#{roleId})
+    </insert>
+
+</mapper> 
