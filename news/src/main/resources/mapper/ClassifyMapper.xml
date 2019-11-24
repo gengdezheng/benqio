@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.news.mapper.ClassifyMapper">
+
+    <resultMap id="classifyList" type="com.java.news.model.Classify">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <select id="queryClassify" resultMap="classifyList">
+      select * from classify order by id desc
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from classify where id= #{id}
+    </delete>
+
+    <insert id="insert" parameterType="string">
+        insert into classify(name) values (#{name})
+    </insert>
+
+</mapper>

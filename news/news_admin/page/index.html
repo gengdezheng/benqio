@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>首页</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/page.css" />
+		<link rel="stylesheet" href="../css/Chart.min.css" />
+			<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="../js/Chart.min.js" ></script>
+	</head>
+
+	<body>
+		<div class="left">
+			<div class="bigTitle">新闻后台管理系统</div>
+			<div class="lines">
+				<div class="pageClick active"><img src="../img/icon-7.png" />首页</div>
+				<div  class="pageClick"><img src="../img/icon-1.png" />用户管理</div>
+				<div class="pageClick"><img src="../img/icon-6.png" />新闻管理</div>
+				<div class="pageClick"><img src="../img/icon-4.png" />登录日志</div>
+				<div class="pageClick"><img src="../img/icon-5.png" />操作日志</div>
+				<div class="pageClick"><img src="../img/icon-3.png" />系统接口</div>
+				<div class="pageClick"><img src="../img/icon-11.png" />新建管理员</div>
+			</div>
+		</div>
+		<div class="top">
+			<div class="leftTiyle" id="flTitle">首页</div>
+			<div class="thisUser">
+				<button class="btn btn-danger tuichu">退出后台</button>
+			</div>
+		</div>
+
+		<div class="content" style="background: rgb(245, 245, 250);">
+			<div class="tongji">
+				<div class="user_count">
+					<img src="../img/icon-8.png"  class="img-circle" width="40"> &nbsp;<span style="font-size: 15px;color: #777;"><strong>用户数</strong></span>
+
+					<h1 class="userCount">0</h1>
+				</div>
+				<div class="article_count">
+					<img src="../img/icon-9.png"  class="img-circle" width="40"> &nbsp;<span style="font-size: 15px;color: #777;"><strong>已审核数</strong></span>
+
+					<h1 class="passCount">0</h1>
+				</div>
+				<div class="unpass_count">
+					<img src="../img/icon-10.png"  class="img-circle" width="40"> &nbsp;<span style="font-size: 15px;color: #777;"><strong>待审核数</strong></span>
+
+					<h1 class="unPassCount">0</h1>
+				</div>
+			</div>
+
+			<div class="line2">
+				<div class="classify-m">
+					<div class="classify-m-t" >
+					  <span style="font-size: 18px;color: #777;line-height: 2;"> &nbsp;<strong> 分类管理</strong></span></div><br>
+					  <input type="text" placeholder="名称" class="in_class" required/><button class="in_add">添加</button><br><br>
+					  <table class="table table-bordered table-hover" style="width: 95%;margin:auto;">
+					  	<thead>
+					  	<tr>
+					  		<td><strong> 编号</strong> </td>
+					  		<td><strong> 名称</strong> </td>
+					  		<td><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
+					  	</tr>
+                        </thead>
+                        <tbody>
+                        	
+                        </tbody>
+					  </table>
+				</div>
+				<div class="classify-c">
+					<canvas id="myChart" height="170"></canvas>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/index.js"></script>
+		<script type="text/javascript" src="../js/url.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>新闻后台管理系统</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/page.css" />
+	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js" ></script>
+</head>
+
+<body>
+	<div class="left">
+		<div class="bigTitle">新闻后台管理系统</div>
+		<div class="lines">
+			<div class="pageClick"><img src="../img/icon-7.png" />首页</div>
+			<div  class="pageClick"><img src="../img/icon-1.png" />用户管理</div>
+			<div class="pageClick active"><img src="../img/icon-6.png" />新闻管理</div>
+			<div class="pageClick"><img src="../img/icon-4.png" />登录日志</div>
+			<div class="pageClick"><img src="../img/icon-5.png" />操作日志</div>
+			<div class="pageClick"><img src="../img/icon-3.png" />系统接口</div>
+			<div class="pageClick"><img src="../img/icon-11.png" />新建管理员</div>
+		</div>
+	</div>
+	<div class="top">
+		<div class="leftTiyle" id="flTitle">新闻管理</div>
+		<div class="thisUser"><button class="btn btn-danger tuichu">退出后台</button></div>
+	</div>
+
+	<div class="content">
+		<div class="searchKey">
+			<div class="searchKey_del">
+				<button type="button" class="btn btn-danger more_del_a"> 批量删除</button>
+			</div>
+			<div class="searchKey_inp form-inline">					
+				<div class="form-group">
+					<select  class="form-control a_state">
+						<option state="-1"></option>
+						<option state="0">待审核</option>
+						<option state="1">已审核</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control a_title"  placeholder="标题">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control a_user"  placeholder="用户">
+				</div>
+				<button  class="btn btn-primary search"> 查 找</button>
+			</div>
+		</div>
+
+		<div class="content_body">
+			<table class="table" style="table-layout:fixed;">
+				<thead>
+					<tr>
+						<td></td>
+						<td>编号</td>
+						<td>标题</td>
+						<td>内容</td>
+						<td>分类</td>
+						<td>发布时间</td>
+						<td>作者</td>
+						<td>状态</td>
+						<td>操作</td>
+					</tr>
+				</thead>									
+			</tbody>
+		</table>
+	</div>
+
+
+            <div class="pageH">
+				<button class="firstpage">首页</button>
+				<button class="uppage">上一页</button>
+				<span class="pageCount"></span>
+				<span class="nowPage">&nbsp;</span>
+				<button class="nextpage">下一页</button>
+				<button class="lastpage">尾页</button>
+			</div>
+
+</div>
+
+
+<div class="mask">
+	<div class="mask_body">
+		<div class="buts">
+		</div>
+		<div class="mask_title" contenteditable="true">
+
+		</div>
+		<div class="mask_content" contenteditable="true">
+
+		</div>
+		<div class="mask_img">
+
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="../js/url.js"></script>
+<script type="text/javascript" src="../js/article.js"></script>
+</body>
+
+</html>

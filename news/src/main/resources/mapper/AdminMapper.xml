@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.news.mapper.AdminMapper">
+
+
+   <insert id="addAdmin" parameterType="string">
+       insert into admin(adminName,adminPassword,phone,createTime)
+       values(#{adminName},#{adminPass},#{phone},now());
+   </insert>
+
+
+    <select id="adminLogin" parameterType="string" resultType="int">
+        select count(adminName) from admin where adminName=#{adminName} and adminPassword=#{adminPass}
+    </select>
+</mapper>

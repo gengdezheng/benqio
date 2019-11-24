@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.news.mapper.LogInfoMapper">
+
+    <resultMap id="query" type="com.java.news.model.LogInfo">
+        <result column="logId" property="logId"/>
+        <result column="descr" property="descr"/>
+        <result column="logUrl" property="logUrl"/>
+        <result column="logParam" property="logParam"/>
+        <result column="logClassName" property="logClassName"/>
+        <result column="logTime" property="logTime"/>
+        <result column="userName" property="userName"/>
+    </resultMap>
+
+<insert id="insertLog" parameterType="com.java.news.model.LogInfo">
+    insert into loginfo(logId,logUrl,logParam,logClassName,logTime,userName,descr)
+    values (#{logId},#{logUrl},#{logParam},#{logClassName},now(),#{userName},#{descr})
+</insert>
+
+
+    <select id="queryLogInfo" resultMap="query" parameterType="string">
+        select logId,descr,logUrl,logParam,logClassName,logTime,userName from loginfo
+         where 1=1
+         <if test="logId!=null and logId!=''">
+            and logId = #{logId}
+         </if>
+    </select>
+
+    <delete id="deleteLogById" parameterType="string">
+        delete from loginfo where logId=#{logId}
+    </delete>
+
+    <delete id="clearLog">
+        delete from loginfo
+    </delete>
+
+</mapper>

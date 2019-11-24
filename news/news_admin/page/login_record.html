@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>新闻后台管理系统</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/page.css" />
+	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js" ></script>
+</head>
+
+<body>
+	<div class="left">
+		<div class="bigTitle">新闻后台管理系统</div>
+		<div class="lines">
+			<div class="pageClick"><img src="../img/icon-7.png" />首页</div>
+			<div  class="pageClick"><img src="../img/icon-1.png" />用户管理</div>
+			<div class="pageClick"><img src="../img/icon-6.png" />新闻管理</div>
+			<div class="pageClick active"><img src="../img/icon-4.png" />登录日志</div>
+			<div class="pageClick"><img src="../img/icon-5.png" />操作日志</div>
+			<div class="pageClick"><img src="../img/icon-3.png" />系统接口</div>
+			<div class="pageClick"><img src="../img/icon-11.png" />新建管理员</div>
+		</div>
+	</div>
+	<div class="top">
+		<div class="leftTiyle" id="flTitle">登录日志</div>
+		<div class="thisUser"><button class="btn btn-danger tuichu">退出后台</button></div>
+	</div>
+
+	<div class="content">
+		<div class="searchKey">
+			<div class="searchKey_del">
+				<button type="button" class="btn btn-danger del_all">清空</button>
+			</div>
+			<div class="searchKey_inp form-inline">					
+				<div class="form-group">
+					<select  class="form-control login_state">
+						<option state="-1">登录状态</option>
+						<option state="0">登录成功</option>
+						<option state="1">登录异常</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<select  class="form-control login_role">
+						<option state="-1">身份</option>
+						<option state="0">管理员</option>
+						<option state="1">普通用户</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control login_name"  placeholder="登录名">
+				</div>
+				
+				<button  class="btn btn-primary search"> 查 找</button>
+			</div>
+		</div>
+
+		<div class="content_body">
+			<table class="table" style="table-layout:fixed;">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>登录名</td>
+						<td>登录地址</td>
+						<td>身份</td>
+						<td>结果</td>
+						<td>原因</td>
+						<td>登录时间</td>
+						<td>操作</td>
+					</tr>
+				</thead>									
+			</tbody>
+		</table>
+	</div>
+	<div class="pageH">
+				<button class="firstpage">首页</button>
+				<button class="uppage">上一页</button>
+				<span class="pageCount"></span>
+				<span class="nowPage">&nbsp;</span>
+				<button class="nextpage">下一页</button>
+				<button class="lastpage">尾页</button>
+			</div>
+</div>
+
+
+<script type="text/javascript" src="../js/url.js"></script>
+<script type="text/javascript" src="../js/loginRecord.js"></script>
+</body>
+
+</html>

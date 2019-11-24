@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.news.mapper.ArticleMapper">
+
+    <resultMap id="ArticleList" type="com.java.news.model.Article">
+        <result property="articleId" column="articleId"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="time" column="time"/>
+        <result property="userId" column="userId"/>
+        <result property="imgs" column="imgs"/>
+        <result property="state" column="state"/>
+        <result property="classId" column="classId"/>
+        <collection property="user" ofType="com.java.news.model.User">
+            <result property="userName" column="userName"/>
+            <result property="headImg" column="headImg"/>
+        </collection>
+        <collection property="classify" ofType="com.java.news.model.Classify">
+            <result property="name" column="name"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="Articles" type="com.java.news.model.Article">
+        <result property="articleId" column="articleId"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="time" column="time"/>
+        <result property="userId" column="userId"/>
+        <result property="imgs" column="imgs"/>
+        <result property="state" column="state"/>
+        <result property="classId" column="classId"/>
+    </resultMap>
+
+
+    <sql id="selectSql">
+                SELECT
+            a.articleId,
+            a.title,
+            a.content,
+            a.imgs,
+            a.state,
+            a.time,
+            u.userName,
+            u.headImg,
+            c. NAME
+        FROM
+            article AS a
+        LEFT JOIN USER AS u ON a.userId = u.userId
+        LEFT JOIN classify AS c ON a.classId = c.id
+    </sql>
+    <sql id="detailSql">
+        select a.title,a.content,a.time,a.imgs,a.state,u.userName from
+              article as a left join user as u
+              on a.userId = u.userId
+    </sql>
+
+    <select id="queryArticle" resultMap="ArticleList">
+        <include refid="selectSql"/>
+        where a.state=1
+        order by a.time desc
+    </select>
+
+    <select id="queryArticle_Admin" resultMap="ArticleList">
+        <include refid="selectSql"/>
+        where 1=1
+        <if test="state!=null and state!=-1">and a.state = #{state}</if>
+        <if test="title!=null and title!=''">and a.title like concat('%',#{title},'%')</if>
+        <if test="userName!=null and userName!=''">and u.userName = #{userName}</if>
+        order by a.time desc
+    </select>
+
+    <insert id="insertArticle" parameterType="com.java.news.model.Article">
+       insert  into article(articleId,title,content,time,userId,classId,state,imgs)
+       values (#{articleId},#{title},#{content},now(),#{userId},#{classId},#{state},#{imgs})
+   </insert>
+
+    <select id="detailArticle" resultMap="ArticleList" parameterType="string">
+        <include refid="detailSql"/>
+        where a.articleId=#{articleId}
+    </select>
+
+    <select id="myArticle" resultMap="ArticleList" parameterType="string">
+        <include refid="selectSql"/>
+        where a.userId=#{userId}
+    </select>
+
+    <select id="searchByKey" parameterType="string" resultMap="ArticleList">
+        <include refid="selectSql"/>
+        where a.title like concat('%',#{key},'%') or a.content like concat('%',#{key},'%')
+    </select>
+
+    <select id="getUnPass" resultType="int" parameterType="string">
+        select count(title) from article where userId = #{userId} and state = 0
+    </select>
+
+    <select id="getAllNumber" resultType="int" parameterType="string">
+        select count(title) from article where userId = #{userId}
+    </select>
+
+    <select id="unPassList" resultMap="Articles" parameterType="string">
+        <include refid="selectSql"/>
+        where a.userId=#{userId} and a.state = 0
+    </select>
+
+    <delete id="deleteArticleByUserId" parameterType="java.util.List">
+        delete from article where userId in
+        <foreach collection="list" close=")" open="(" separator="," item="userIds">
+            #{userIds}
+        </foreach>
+    </delete>
+
+    <delete id="batchDeleteArticle" parameterType="java.util.List">
+        delete from article where articleId in
+        <foreach collection="list" close=")" open="(" separator="," item="articleIds">
+            #{articleIds}
+        </foreach>
+    </delete>
+
+    <update id="setArticlePass" parameterType="string">
+        update article set state = 1 where articleId=#{articleId}
+    </update>
+
+
+    <update id="updateArticle" parameterType="string">
+        update article set title=#{title},content=#{content},state = 1 where articleId=#{articleId}
+    </update>
+
+    <select id="getPassCount" resultType="int">
+        select count(state) from article where state = 1
+    </select>
+
+    <select id="getUnpassCount" resultType="int">
+        select count(state) from article where state = 0
+    </select>
+
+    <delete id="deleteByClassId" parameterType="int">
+        delete from article where classId = #{classId}
+    </delete>
+
+</mapper>

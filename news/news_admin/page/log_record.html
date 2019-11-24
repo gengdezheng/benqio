@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>新闻后台管理系统</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/page.css" />
+	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js" ></script>
+</head>
+
+<body>
+	<div class="left">
+		<div class="bigTitle">新闻后台管理系统</div>
+		<div class="lines">
+			<div class="pageClick"><img src="../img/icon-7.png" />首页</div>
+			<div  class="pageClick"><img src="../img/icon-1.png" />用户管理</div>
+			<div class="pageClick"><img src="../img/icon-6.png" />新闻管理</div>
+			<div class="pageClick"><img src="../img/icon-4.png" />登录日志</div>
+			<div class="pageClick active"><img src="../img/icon-5.png" />操作日志</div>
+			<div class="pageClick"><img src="../img/icon-3.png" />系统接口</div>
+			<div class="pageClick"><img src="../img/icon-11.png" />新建管理员</div>
+		</div>
+	</div>
+	<div class="top">
+		<div class="leftTiyle" id="flTitle">操作日志</div>
+		<div class="thisUser"><button class="btn btn-danger tuichu">退出后台</button></div>
+	</div>
+
+	<div class="content">
+		<div class="searchKey">
+			<div class="searchKey_del">
+				<button type="button" class="btn btn-danger del_all">清空</button>
+			</div>
+			<div class="searchKey_inp form-inline">					
+				<div class="form-group">
+					<input type="text" class="form-control logId"  placeholder="编号">
+				</div>
+				
+				<button  class="btn btn-primary search"> 查 找</button>
+			</div>
+		</div>
+
+		<div class="content_body">
+			<table class="table" style="table-layout:fixed;">
+				<thead>
+					<tr>
+						<td>编号</td>
+						<td>描述</td>
+						<td>请求地址</td>
+						<td>参数</td>
+						<td>方法</td>
+						<td>时间</td>
+						<td>用户</td>
+						<td>操作</td>
+					</tr>
+				</thead>									
+			</tbody>
+		</table>
+	</div>
+	<div class="pageH">
+				<button class="firstpage">首页</button>
+				<button class="uppage">上一页</button>
+				<span class="pageCount"></span>
+				<span class="nowPage">&nbsp;</span>
+				<button class="nextpage">下一页</button>
+				<button class="lastpage">尾页</button>
+			</div>
+</div>
+
+<div class="log_mask">
+   <div class="log_mask_b">
+		   	  <div class="panel panel-default panel-info">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">操作日志详情</h3>
+		  </div>
+		  <div class="panel-body">
+		     <div class="line">
+		     	 <div class="panel-body_title">编号</div>
+		     	 <div class="panel-body_val log_id"></div>
+		     </div>
+		     <div class="line">
+		     	 <div class="panel-body_title">描述</div>
+		     	 <div class="panel-body_val log_descr"></div>
+		     </div>
+		     <div class="line">
+		     	 <div class="panel-body_title">请求地址</div>
+		     	 <div class="panel-body_val log_url"></div>
+		     </div>
+		     <div class="line">
+		     	 <div class="panel-body_title">请求参数</div>
+		     	 <div class="panel-body_val log_param"></div>
+		     </div>
+		      <div class="line">
+		     	 <div class="panel-body_title">接口</div>
+		     	 <div class="panel-body_val log_className"></div>
+		     </div>
+		      <div class="line">
+		     	 <div class="panel-body_title">操作用户</div>
+		     	 <div class="panel-body_val log_user"></div>
+		     </div>
+		     <button class="btn btn-info m_close" >关闭</button>
+		  </div>
+		</div>
+   </div>
+<div>
+
+<script type="text/javascript" src="../js/url.js"></script>
+<script type="text/javascript" src="../js/logRecord.js"></script>
+</body>
+
+</html>

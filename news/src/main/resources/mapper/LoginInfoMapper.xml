@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.news.mapper.LoginInfoMapper">
+
+    <resultMap type="com.java.news.model.LoginInfo" id="query">
+        <result property="id" column="id"/>
+        <result property="loginName" column="loginName"/>
+        <result property="loginIP" column="loginIP"/>
+        <result property="loginState" column="loginState"/>
+        <result property="reason" column="reason"/>
+        <result property="time" column="time"/>
+        <result property="role" column="role"/>
+    </resultMap>
+
+    <sql id="info">
+        select id,loginName,loginIP,loginState,reason,time,role  from logininfo
+    </sql>
+
+    <insert id="insertLoginInfo" parameterType="com.java.news.model.LoginInfo">
+        insert into logininfo(loginName,loginIP,loginState,reason,time,role)
+        values (
+        #{loginName},#{loginIP},#{loginState},#{reason},now(),#{role}
+        )
+    </insert>
+
+    <select id="queryLoginInfo" parameterType="string" resultMap="query">
+         <include refid="info"/>
+           where 1=1
+               <if test="loginState!=null and loginState!=-1">and loginState = #{loginState} </if>
+               <if test="role!=null and role!=-1">and role = #{role} </if>
+               <if test="loginName!=null and loginName!=''">and loginName = #{loginName} </if>
+        order by time desc
+    </select>
+
+    <delete id="clearLoginInfo">
+        delete from logininfo
+    </delete>
+
+    <delete id="deleteLoginInfoByTime" parameterType="int">
+        delete from logininfo where id=#{id}
+    </delete>
+
+</mapper>
